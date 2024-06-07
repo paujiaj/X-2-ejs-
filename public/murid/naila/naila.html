@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../murid.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="../../js/theme.js" defer></script>
+    <title>NAILA RAHMAH ASFAHANI</title>
+</head>
+<body>
+    <input type="checkbox" class="theme-btn" id="darkmode-toggle"/>
+    <nav>
+   
+        <div class="nav-links" id="navLinks">
+            <i class="fi fa fa-times" onclick="hidemenu()"></i>
+            <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/about">ABOUT</a></li>
+                    <li><a href="/#X-2">X-2</a></li>
+                    <li><a href="/foto">FOTO</a></li>
+                    <li><a href="/setting"><i class="fu fa fa-cog"></i></a></li>
+            </ul>
+        </div>
+    <i class="fa fa-bars" onclick="showmenu()"></i>
+</nav>
+    <section class="header">
+        
+        <div class="content-box">
+            <div class="image-container">
+                <div class="image-box">
+                    <img id="slide-1" src="img/niala.jpeg">
+                    <img id="slide-2" src="">
+                    <div class="saved-div" id="slide-3"></div>
+                    <div class="upload" id="slide-4">
+                        <div class="upload2">
+                            <main class="app">
+                                <div class="header2">
+                                    <p>UPLOAD IMAGES</p>
+                                    <div class="server-message"></div>
+                                </div>
+                    
+                                <div class="input-div">
+                                    <p>Drag & drop images here or <span class="browse">Browse</span></p>
+                                    <input type="file" class="file" multiple="multiple" accept="image/png, image/jpg, image/jpeg">
+                                    
+                                </div>
+                    
+                                <!--<form id="saved-form">
+                                    <div class="header">
+                                        <h2>saved in server</h2>
+                                        <button type="submit">Delete</button>
+                                    </div>
+                                    <div class="saved-div"></div>
+                                </form>-->
+                    
+                                <form id="queued-form">
+                                    <div class="header2">
+                                        <p>QUEUED</p>
+                                        <input type="hidden" name="page" value="adiva">
+                                        <button type="submit">UPLOAD</button>
+                                    </div>
+                                    <div class="queued-div"></div>
+                                </form>
+                            </main>
+                        </div>
+                    </div>
+                    <div class="slider-nav">
+                        <a href="#slide-1"></a>
+                        <a href="#slide-2"></a>
+                        <a href="#slide-3"></a>
+                    </div>
+                </div>
+            </div>
+        <div class="des-box">
+            <div class="des-box-h">
+                <h1>NAILA RAHMAH ASFAHANI</h1>
+            </div>
+            <div class="des-box-p">
+                <ul>
+                    <li>Nama: Naila Rahmah Asfahani</li>
+                    <li>Nama panggilan: Naila</li>
+                    <li>Umur: -</li>
+                    <li>Tanggal Lahir: 5 Agustus</li>
+                    <li>Hobby: -</li>
+                    <li>Makanan Favorit: -</li>
+
+                </ul>
+            </div>
+            <div class="des-box-p2">
+                <p>"-" <br>
+                    - Naila - 
+                </p>
+            </div>
+            <div class="med-link">
+                <div class="med-link-box">
+                    <a href="https://www.instagram.com/__nayxlaa/"><img src="../../img/ig logo.png"></a>
+                </div>
+            </div>
+        </div>
+   </div>  
+    </section> 
+    </section>
+    <section class="background">pp</section>
+
+
+
+
+
+
+
+<script>
+
+    var navLinks = document.getElementById("navLinks");
+    function showmenu(){
+        navLinks.style.right = "-12px";
+    }
+    function hidemenu(){
+        navLinks.style.right = "-700px";
+    }
+    
+</script>
+<script>
+    let queuedImagesArray = [],
+    savedForm = document.querySelector("#saved-form"),
+    queuedForm = document.querySelector("#queued-form"),
+    savedDiv = document.querySelector(".saved-div"),
+    queuedDiv = document.querySelector(".queued-div"),
+    inputDiv = document.querySelector(".input-div"),
+    input = document.querySelector(".input-div input"),
+    serverMessage = document.querySelector(".server-message"),
+    savedImages = JSON.parse('<%-JSON.stringify(images)%>')
+    deleteImages = [];
+
+    if(savedImages) displaySavedImages()
+
+    function displaySavedImages(){
+        let images = ""
+        savedImages.forEach((image, index) => {
+            images += `<div class="image">
+                       <img src="https://localhost:3000/murid/img${image}" alt="image">
+                       <!--<span onclick="deleteSavedImage(${index})">&times;</span>-->
+                       </div>`
+        })
+        savedDiv.innerHTML = images
+    }
+
+    function deleteSavedImage(index){
+        deleteImages.push(savedImages[index])
+        savedImages.splice(index, 1)
+        displaySavedImages()
+    }
+
+    input.addEventListener("change", () => {
+        const files = input.files
+        for(let i = 0; i < files.length;i++){
+            queuedImagesArray.push(files[i])
+        }
+        queuedForm.reset()
+        displayQueuedImages()
+    })
+
+    inputDiv.addEventListener("drop", (e) => {
+        e.preventDefault()
+        const files = e.dataTransfer.files
+        console.log(files)
+        for(let i = 0; i < files.length;i++){
+            if(!files[i].type.match("image")) continue
+
+            if(queuedImagesArray.every(image => image.name !== files[i].name))
+            queuedImagesArray.push(files[i])
+        }
+        displayQueuedImages()
+    })
+
+    function displayQueuedImages(){
+        let images = ""
+        queuedImagesArray.forEach((image, index) => {
+            images += `<div class="image">
+                       <img src="${URL.createObjectURL(image)}" alt="image">
+                       <span onclick="deleteQueuedImage(${index})">&times;</span>
+                       </div>`
+        })
+        queuedDiv.innerHTML = images
+    }
+
+    function deleteQueuedImage(index){
+        queuedImagesArray.splice(index, 1)
+        displayQueuedImages()
+    }
+
+    queuedForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        sendQueuedImagesToServer()
+    })
+
+    function sendQueuedImagesToServer(){
+        const formData = new FormData(queuedForm)
+
+        queuedImagesArray.forEach((image, index) => {
+            formData.append(`file[${index}]`, image)
+        })
+
+        fetch("upload2", {
+            method: "POST",
+            body : formData
+        })
+
+        .then(response => {
+            if(response.status !== 200) throw Error(response.statusText)
+            location.reload()
+        })
+
+        .catch(error => {
+            serverMessage.innerHTML = error
+            serverMessage.style.cssText = "background-color: #f8d7da; color: #b71c1c"
+        })
+    }
+
+    
+
+</script>
+</body>
+</html>
