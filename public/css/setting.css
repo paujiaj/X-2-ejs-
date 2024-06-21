@@ -29,7 +29,7 @@ body{
         }
         .nav-links{
             background: #28282B;
-            z-index: 100;
+            z-index: 200;
         }
         .fi{
             color: #fff;
@@ -132,7 +132,7 @@ nav .fi{
             top: 0;
             right: -700px;
             text-align: left;
-            z-index: 2;
+            z-index: 100;
             transition: 1s;
             margin: 0;
             box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.3);
@@ -225,6 +225,7 @@ nav .fi{
                     position: relative;
                     cursor: pointer;
                     font-size: 17px;
+                    z-index: 1;
                 }
                 .theme-btn::before{
                     content: "";
