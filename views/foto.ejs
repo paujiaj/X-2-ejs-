@@ -72,7 +72,7 @@
         </div>
         <div id="popup-container" class="popup-container">
             <span class="close-popup" onclick="closePopup()">&times;</span>
-            <img id="popup-image" class="popup-image" src="" alt="popup image">
+            <img id="popup-image" class="popup-image" onclick="closePopup()" src="" alt="popup image">
         </div>
     </section>
     <section class="upload-page">
@@ -148,8 +148,8 @@ document.querySelector('.popup-foto span').onclick = () =>{
         let images = ""
         savedImages.forEach((image, index) => {
             images += `<div class="image">
-                       <img src="https://localhost:5000/img/upload/${image}" alt="image">
-                       <!--<span onclick="deleteSavedImage(${index})">&times;</span>-->
+                       <img src="https://localhost:3000/img/upload/${image}" alt="image">
+                       <!---<span onclick="deleteSavedImage(${index})">&times;</span>--->
                        </div>`
         })
         savedDiv.innerHTML = images
