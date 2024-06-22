@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="js/theme.js" defer></script>
     <script src="js/murid.js" defer></script>
-    <title>SALMA KHAIRANI MAGHFIRAH</title>
+    <title>SHIFWAH MURRAN NASHIFA</title>
 </head>
 
 <body>
@@ -46,51 +46,26 @@
             </div>
             <div class="des-box">
                 <div class="des-box-h">
-                    <h1><%= data.nama %></h1>
+                    <h1>SHIFWAH MURRAN NASHIFA</h1>
                 </div>
                 <div class="des-box-p">
-                    <div class="container">
-                        <div class="ul-div">
-                            <ul>
-                                <li>Nama: 
-                                </li>
-                                <li>Nama Panggilan: 
-                                </li>
-                                <li>Umur: 
-                                </li>
-                                <li>Tanggal Lahir: 
-                                </li>
-                                <li>Hobi: 
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="span-div">
-                            <span id="nama">
-                                <%= data.nama %>
-                            </span>
-                            <span id="nama_panggilan">
-                                <%= data.nama_panggilan %>
-                            </span>
-                            <span id="umur">
-                                <%= data.umur %>
-                            </span>
-                            <span id="tanggal_lahir">
-                                <%= data.tanggal_lahir %>
-                            </span>
-                            <span id="hobi">
-                                <%= data.hobi %>
-                            </span>
-                        </div>
-                    </div> 
+                    <ul>
+                        <li>Nama: Shifwah Murran Nashifa</li>
+                        <li>Nama panggilan: cipwah</li>
+                        <li>Umur: 16 Tahun</li>
+                        <li>Tanggal Lahir: 22 September</li>
+                        <li>Hobby: Nonton film, Journaling, Baca buku</li>
+                        <li>Makanan Favorit: Makanan yang ada rasa Matchanya</li>
+
+                    </ul>
                 </div>
                 <div class="footer">
                     <div class="upload-btn">
                         <button class="button2" onclick="openPopup()">UPLOAD</button>
-                        <button id="editBtn" onclick="toggleEdit()">Edit</button>
                     </div>
                     <div class="des-box-p2">
-                        <p>"Dih" <br>
-                            - Pauji -
+                        <p>"-" <br>
+                            - Shifwah -
                         </p>
                     </div>
                     <div class="med-link">
@@ -118,7 +93,7 @@
                         <form id="queued-form">
                             <div class="header2">
                                 <p>QUEUED</p>
-                                <input type="hidden" name="page" value="salma">
+                                <input type="hidden" name="page" value="shifwah">
                                 <button type="submit">UPLOAD</button>
                             </div>
                             <div class="queued-div"></div>
@@ -126,12 +101,7 @@
                     </main>
                 </div>
             </div>
-            <div class="popup2" id="popup2">
-                <span class="close-popup" onclick="closePopup2()">&times;</span>
-                <img src="" alt="" id="popup-img" class="popup-img" onclick="closePopup2()">
-            </div>
         </div>
-    </section>
     </section>
     <section class="background">pp</section>
 
@@ -170,7 +140,7 @@
             let images = ""
             savedImages.forEach((image, index) => {
                 images += `<div class="image">
-                       <img src="https://localhost:3000/murid/salma/img/${image}" alt="image">
+                       <img src="https://localhost:3000/murid/shifwah/img/${image}" alt="image">
                        </div>`
             })
             savedDiv.innerHTML = images

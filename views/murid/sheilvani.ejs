@@ -46,26 +46,51 @@
             </div>
             <div class="des-box">
                 <div class="des-box-h">
-                    <h1>SHEILVANI FITRIAN SYAH</h1>
+                    <h1><%= data.nama %></h1>
                 </div>
                 <div class="des-box-p">
-                    <ul>
-                        <li>Nama: Sheilvani Fitrian Syah</li>
-                        <li>Nama panggilan: Vani</li>
-                        <li>Umur: -</li>
-                        <li>Tanggal Lahir: 7 Oktober</li>
-                        <li>Hobby: -</li>
-                        <li>Makanan Favorit: -</li>
-
-                    </ul>
+                    <div class="container">
+                        <div class="ul-div">
+                            <ul>
+                                <li>Nama: 
+                                </li>
+                                <li>Nama Panggilan: 
+                                </li>
+                                <li>Umur: 
+                                </li>
+                                <li>Tanggal Lahir: 
+                                </li>
+                                <li>Hobi: 
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="span-div">
+                            <span id="nama">
+                                <%= data.nama %>
+                            </span>
+                            <span id="nama_panggilan">
+                                <%= data.nama_panggilan %>
+                            </span>
+                            <span id="umur">
+                                <%= data.umur %>
+                            </span>
+                            <span id="tanggal_lahir">
+                                <%= data.tanggal_lahir %>
+                            </span>
+                            <span id="hobi">
+                                <%= data.hobi %>
+                            </span>
+                        </div>
+                    </div> 
                 </div>
                 <div class="footer">
                     <div class="upload-btn">
                         <button class="button2" onclick="openPopup()">UPLOAD</button>
+                        <button id="editBtn" onclick="toggleEdit()">Edit</button>
                     </div>
                     <div class="des-box-p2">
-                        <p>"-" <br>
-                            - Vani -
+                        <p>"Dih" <br>
+                            - Pauji -
                         </p>
                     </div>
                     <div class="med-link">
@@ -225,6 +250,47 @@
 
 
 
+    </script>
+    <script>
+        function toggleEdit() {
+            const editBtn = document.getElementById('editBtn');
+            const isEditing = editBtn.innerText === 'Save';
+            const fields = ['nama', 'nama_panggilan', 'umur', 'tanggal_lahir', 'hobi'];
+
+            if (isEditing) {
+                const data = {};
+                fields.forEach(field => {
+                    const input = document.getElementById(field + '_input');
+                    data[field] = input.value;
+                    document.getElementById(field).innerText = input.value;
+                });
+
+                const filename = window.location.pathname.split('/').pop(); // Mengambil bagian terakhir dari path sebagai nama file
+
+                // Kirim data ke server
+                fetch("upload3", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ filename, data }) // Mengirimkan filename bersama dengan data
+                }).then(response => {
+                    if (response.ok) {
+                        alert('Data saved successfully!');
+                    } else {
+                        alert('Failed to save data.');
+                    }
+                });
+
+                editBtn.innerText = 'Edit';
+            } else {
+                fields.forEach(field => {
+                    const span = document.getElementById(field);
+                    span.innerHTML = `<input id="${field}_input" value="${span.innerText}">`;
+                });
+                editBtn.innerText = 'Save';
+            }
+        }
     </script>
 </body>
 

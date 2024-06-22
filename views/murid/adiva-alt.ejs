@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script src="js/theme.js" defer></script>
     <script src="js/murid.js" defer></script>
-    <title>SALMA KHAIRANI MAGHFIRAH</title>
+    <title>ADIVA SASIKIRANA</title>
 </head>
 
 <body>
@@ -31,7 +31,6 @@
         <i class="fa fa-bars" onclick="showmenu()"></i>
     </nav>
     <section class="header">
-
         <div class="content-box">
             <div class="image-container">
                 <div class="image-box">
@@ -46,51 +45,26 @@
             </div>
             <div class="des-box">
                 <div class="des-box-h">
-                    <h1><%= data.nama %></h1>
+                    <h1>ADIVA SASIKIRANA</h1>
                 </div>
                 <div class="des-box-p">
-                    <div class="container">
-                        <div class="ul-div">
-                            <ul>
-                                <li>Nama: 
-                                </li>
-                                <li>Nama Panggilan: 
-                                </li>
-                                <li>Umur: 
-                                </li>
-                                <li>Tanggal Lahir: 
-                                </li>
-                                <li>Hobi: 
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="span-div">
-                            <span id="nama">
-                                <%= data.nama %>
-                            </span>
-                            <span id="nama_panggilan">
-                                <%= data.nama_panggilan %>
-                            </span>
-                            <span id="umur">
-                                <%= data.umur %>
-                            </span>
-                            <span id="tanggal_lahir">
-                                <%= data.tanggal_lahir %>
-                            </span>
-                            <span id="hobi">
-                                <%= data.hobi %>
-                            </span>
-                        </div>
-                    </div> 
+                    <ul>
+                        <li>Nama: Adiva Sasikirana</li>
+                        <li>Nama panggilan: Diva</li>
+                        <li>Umur: -</li>
+                        <li>Tanggal Lahir: 4 Januari</li>
+                        <li>Hobby: -</li>
+                        <li>Makanan Favorit: -</li>
+
+                    </ul>
                 </div>
                 <div class="footer">
                     <div class="upload-btn">
                         <button class="button2" onclick="openPopup()">UPLOAD</button>
-                        <button id="editBtn" onclick="toggleEdit()">Edit</button>
                     </div>
                     <div class="des-box-p2">
-                        <p>"Dih" <br>
-                            - Pauji -
+                        <p>"-" <br>
+                            - Diva -
                         </p>
                     </div>
                     <div class="med-link">
@@ -118,7 +92,7 @@
                         <form id="queued-form">
                             <div class="header2">
                                 <p>QUEUED</p>
-                                <input type="hidden" name="page" value="salma">
+                                <input type="hidden" name="page" value="adiva">
                                 <button type="submit">UPLOAD</button>
                             </div>
                             <div class="queued-div"></div>
@@ -170,7 +144,7 @@
             let images = ""
             savedImages.forEach((image, index) => {
                 images += `<div class="image">
-                       <img src="https://localhost:3000/murid/salma/img/${image}" alt="image">
+                       <img src="https://localhost:3000/murid/adiva/img/${image}" alt="image">
                        </div>`
             })
             savedDiv.innerHTML = images
