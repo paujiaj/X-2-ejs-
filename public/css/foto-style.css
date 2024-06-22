@@ -59,7 +59,6 @@
     }
 
     .upload-page {
-        background: #151517;
 
         .input-div,
         .queued-div {
@@ -449,9 +448,26 @@ nav {
     }
 }
 
+.close-popup{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 40px;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    z-index: 100;
+}
+
 .upload-page {
-    min-height: 100vh;
-    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.9);
+    height: 100vh;
+    width: 100%;
+    z-index: 100;
+    display: none;
     align-items: center;
 }
 

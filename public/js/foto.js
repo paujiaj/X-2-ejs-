@@ -37,3 +37,13 @@ document.querySelectorAll('.image img').forEach(img => {
 function closePopup() {
     document.getElementById('popup-container').style.display = 'none';
 }
+
+function openPopup2() {
+    document.getElementById('upload-page').style.display = 'flex'
+}
+
+function closePopup2() {
+    document.getElementById('upload-page').style.display = 'none';
+}
+
+
