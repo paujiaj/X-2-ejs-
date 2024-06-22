@@ -9,17 +9,17 @@ const unlinkFile = util.promisify(fs.unlink)
 const port = 3000
 const app = express()
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({extended:false}))
 app.set("view engine", "ejs")
 app.use(express.static("public"))
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/img/upload/')
+      cb(null, './public/img/upload/')
     },
     filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, uniqueSuffix + path.extname(file.originalname))
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, uniqueSuffix + path.extname(file.originalname))
     }
 })
 
@@ -35,29 +35,29 @@ const storage2 = multer.diskStorage({
         cb(null, uniqueSuffix + path.extname(file.originalname));
     }
 });
-
-const upload = multer({
-    storage: storage,
-    limits: { fileSize: 10000000 },
-    fileFilter: function (req, file, cb) {
+  
+const upload = multer({ 
+    storage: storage, 
+    limits: {fileSize:10000000},
+    fileFilter: function(req, file, cb){
         checkFileType(file, cb)
     }
 }).any()
 
-const upload2 = multer({
-    storage: storage2,
-    limits: { fileSize: 10000000 },
-    fileFilter: function (req, file, cb) {
+const upload2 = multer({ 
+    storage: storage2, 
+    limits: {fileSize:10000000},
+    fileFilter: function(req, file, cb){
         checkFileType(file, cb)
     }
 }).any()
 
-function checkFileType(file, cb) {
+function checkFileType (file, cb) {
     const fileTypes = /jpeg|png|jpg/
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase())
     const mimetype = fileTypes.test(file.mimetype)
 
-    if (mimetype && extname) {
+    if(mimetype && extname){
         return cb(null, true)
     } else {
         cb("Please upload images only")
@@ -83,39 +83,6 @@ const handleRoute = (dir, view, route) => {
                     images.push(file);
                 });
                 const folder = dir.replace('./public', '');
-                const dataPath = path.join(__dirname, 'data', `${route}.json`);
-                if (fs.existsSync(dataPath)) {
-                    const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-                    res.render(view, { data, images: images, folder: folder });
-                } else {
-                    res.status(404).send('Page not found');
-                }
-            } else {
-                console.log(err);
-                res.status(500).send("Internal Server Error");
-            }
-        });
-    });
-
-    app.post("/upload3", (req, res) => {
-        const { filename, data } = req.body; // Ambil filename dan data dari body permintaan POST
-        const dataPath = path.join(__dirname, 'data', `${filename}.json`);
-        console.log('Data path:', dataPath);
-        fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-        console.log(`Data saved for ${route}:`, req.body); // Log untuk memastikan data diterima
-        res.send('Data saved');
-    });
-};
-
-const handleRoute2 = (dir, view, route) => {
-    app.get(route, (req, res) => {
-        let images = [];
-        fs.readdir(dir, (err, files) => {
-            if (!err) {
-                files.forEach(file => {
-                    images.push(file);
-                });
-                const folder = dir.replace('./public', '');
                 res.render(view, { images: images, folder: folder});
             } else {
                 console.log(err);
@@ -125,7 +92,24 @@ const handleRoute2 = (dir, view, route) => {
     });
 };
 
-handleRoute2("./public/img/upload", "foto", "/foto");
+const handleRoute2 = (dir, view, route) => {
+    app.get(route, (req, res) => {
+        let images = []
+        fs.readdir(dir, (err, files) => {
+            if (!err) {
+                files.forEach(file => {
+                    images.push(file)
+                });
+                res.render(view, { images: images,})
+            } else {
+                console.log(err);
+                res.status(500).send("Internal Server Error")
+            }
+        });
+    });
+};
+
+handleRoute("./public/img/upload", "foto", "/foto");
 handleRoute("./public/murid/adiva/img", "murid/adiva", "/adiva");
 handleRoute("./public/murid/adrian/img", "murid/adrian", "/adrian");
 handleRoute("./public/murid/akhmad/img", "murid/akhmad", "/akhmad");
@@ -155,13 +139,13 @@ handleRoute("./public/murid/sheilvani/img", "murid/sheilvani", "/sheilvani");
 handleRoute("./public/murid/shifwah/img", "murid/shifwah", "/shifwah");
 handleRoute("./public/murid/vito/img", "murid/vito", "/vito");
 handleRoute("./public/murid/khalila/img", "murid/khalila", "/khalila");
-handleRoute("./public/murid/muhfauzi/img", "murid/muhfauzi", "/muhfauzi");
+handleRoute2("./public/murid/muhfauzi/img", "murid/muhfauzi", "/muhfauzi");
 
 app.post("/upload", (req, res) => {
     upload(req, res, (err) => {
-        if (!err && req.files != "") {
+        if(!err && req.files != ""){
             res.status(200).send()
-        } else if (!err && req.files == "") {
+        } else if(!err && req.files == ""){
             res.statusMessage = "Please select an image to upload"
             res.status(400).end()
         } else {
@@ -173,9 +157,9 @@ app.post("/upload", (req, res) => {
 
 app.post("/upload2", (req, res) => {
     upload2(req, res, (err) => {
-        if (!err && req.files != "") {
+        if(!err && req.files != ""){
             res.status(200).send()
-        } else if (!err && req.files == "") {
+        } else if(!err && req.files == ""){
             res.statusMessage = "Please select an image to upload"
             res.status(400).end()
         } else {
