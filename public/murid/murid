@@ -57,22 +57,22 @@ body {
 
     .des-box {
         color: #fff;
-        background: #1a1a1c;
     }
 
+    .input-div,
+    .queued-div,
+    button {
+        background: #1a1a1c;
+        border-color: #1a1a1c;
+        color: #fff;
+    }
 
+    .upload {
+        background: #151517;
 
-    .upload2 {
         .header2,
         .input-div p,
         .browse {
-            color: #fff;
-        }
-        .input-div,
-        .queued-div,
-        button {
-            background: #28282B;
-            border-color: #28282B;
             color: #fff;
         }
 
@@ -93,7 +93,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    z-index: 100;
+    z-index: 1;
     width: 100%;
     transition: 0.3s;
     background: #fff;
@@ -212,106 +212,87 @@ nav .fa {
     overflow: hidden;
     height: 100%;
     box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .image-box {
     display: flex;
+    overflow-x: auto;
     aspect-ratio: 2 / 5;
-    min-width: 100vh;
-    max-width: 500px;
-    height: 100%;
-    overflow: hidden;
-
-    .nav-dot {
-        display: flex;
-        padding: 16px;
-        position: absolute;
-        bottom: 0;
-        z-index: 10;
-        cursor: pointer;
-        transition: 400ms;
-        align-items: center;
-        justify-content: center;
-        left: 50%;
-        transform: translateX(-50%);
-
-        .single-dot {
-            background: #fff;
-            height: 16px;
-            width: 16px;
-            border-radius: 50%;
-            cursor: pointer;
-            margin: 0 8px;
-            position: 400ms;
-        }
-
-        .single-dot.active {
-            background: #FF894C;
-        }
-    }
-
-    .next-btn,
-    .prev-btn {
-        background: #fff;
-        padding: 16px;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 20px;
-        z-index: 10;
-        cursor: pointer;
-        transition: 400ms;
-    }
-
-    .next-btn:hover,
-    .prev-btn:hover {
-        background: #FF894C;
-    }
-
-    .prev-btn {
-        left: 0;
-    }
-
-    .next-btn {
-        right: 0;
-    }
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
 
     .saved-div {
-        flex: 1 1 100%;
+        flex: 1 0 100%;
         scroll-snap-align: start;
         height: 100vh;
-        width: 100vh;
-        position: relative;
-        transition: 900ms cubic-bezier(0.48, 0.15, 0.18, 1);
+        object-fit: cover;
+        width: 100%;
 
-        .image {
-            height: 100%;
-            position: absolute;
+        .saved-div img {
+            flex: 1 0 100%;
+            scroll-snap-align: start;
+            height: 100vh;
+            object-fit: cover;
             width: 100%;
-            cursor: pointer;
-
-            img {
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-                position: absolute;
-            }
         }
     }
 }
 
-.upload {
-    height: 100%;
-    position: absolute;
-    align-content: center;
+.image-box img {
+    flex: 1 0 100%;
+    scroll-snap-align: start;
+    height: 100vh;
+    object-fit: cover;
+    width: 100%;
+}
 
-    .upload2 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+.upload {
+    flex: 1 0 100%;
+    scroll-snap-align: start;
+    max-height: 100vh;
+    object-fit: cover;
+    width: 100%;
+    align-content: center;
+}
+
+.upload2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.slider-nav {
+    display: flex;
+    column-gap: 1rem;
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+
+    a {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background-color: #fff;
+        opacity: 75%;
+        transition: opacity ease 250ms;
+    }
+
+    a:hover {
+        opacity: 1;
     }
 }
 
@@ -320,73 +301,27 @@ nav .fa {
     color: #000;
     flex-grow: 1;
     text-align: center;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 50px;
-
-    margin .upload-btn {
-        .button2 {
-            color: black;
-        }
-    }
-
-    .med-link {
-        flex-shrink: 1;
-
-        .med-link-box img {
-            width: 75px;
-
-        }
-    }
-}
-
 .des-box-h {
-    margin: 100px 50px 10px;
+    margin: 100px 20px 30px;
     font-size: 30px;
-    text-transform: uppercase;
 }
 
 .des-box-p {
     position: relative;
-    margin: 40px 35px;
+    margin: 40px 80px;
     text-align: left;
     flex-grow: 1;
     font-size: 20px;
     letter-spacing: 2px;
-    text-transform: capitalize;
-
-    .container{
-        display: flex;
-    }
-
-    .span-div{
-        display: flex;
-        flex-direction: column;
-        margin-left: 5px;
-        span{
-            padding: 3px;
-            input{
-                width: 500px;
-                padding: 0px;
-            }
-        }
-    }
-
-    ul{
-        margin-left: 30px;
-    }
 
     ul li {
-        padding: 3px;
+        margin: 3px;
     }
 }
 
@@ -394,6 +329,14 @@ nav .fa {
     position: relative;
     padding: 20px;
     letter-spacing: 2px;
+}
+
+.med-link {
+    flex-shrink: 1;
+
+    .med-link-box img {
+        width: 75px;
+    }
 }
 
 .background {
@@ -446,71 +389,6 @@ button:hover::after {
     width: 100%;
 }
 
-.popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.9);
-    height: 100vh;
-    width: 100%;
-    z-index: 100;
-
-    .close-popup{
-        position: absolute;
-        top: 0px;
-        right: 10px;
-        font-size: 40px;
-        font-weight: bolder;
-        color: #fff;
-        cursor: pointer;
-        z-index: 100;
-    }
-
-    .upload2{
-        display: flex;
-        flex: 1 1 auto;
-        margin: 50px;
-    }
-
-    .upload2 form{
-        z-index: 100;
-    }
-
-}
-
-.popup2{
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.9);
-    height: 100vh;
-    width: 100%;
-    z-index: 100;
-    display: none;
-
-    .popup-img{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 1850px;
-        height: 100vh;
-        object-fit: contain;
-    }
-
-    span {
-        position: absolute;
-        top: 0;
-        right: 10px;
-        font-size: 40px;
-        font-weight: bolder;
-        color: #fff;
-        cursor: pointer;
-        z-index: 100;
-    }
-}
-
 .app {
     max-width: 1224px;
     width: 92%;
@@ -519,7 +397,6 @@ button:hover::after {
     flex-direction: column;
     gap: 10px;
     justify-content: center;
-    flex: 1 1 auto;
 }
 
 .header2 {
@@ -534,7 +411,6 @@ button:hover::after {
 .header2 p {
     min-width: fit-content;
     font-size: 22px;
-    color: #fff;
 }
 
 .server-message {
@@ -622,18 +498,3 @@ button:hover::after {
 .queued-div .span--hidden {
     visibility: hidden;
 }
-
-@media(max-width: 1280px) {
-    .content-box{
-        display: flex;
-        flex-direction: row;
-        .image-container{
-            display: flex;
-            justify-content: center;
-            flex: 1 1 auto;
-            overflow: hidden;
-        }
-    }   
-}
-
-
